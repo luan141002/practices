@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: personal-practices
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?allowPublicKeyRetrieval=true&useUnicode=true&character_set_server=utf8mb4&connectionCollation=utf8mb4_unicode_ci&&useSSL=false&serverTimezone=UTC
+    username: postgres
+    password: 1410
+  sql:
+    init:
+      continue-on-error: true
+  #      schema-locations: classpath:/data.sql
+  #      mode: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 1
+    locations: classpath:db/migration
+snowflake:
+  machine-id: 1
