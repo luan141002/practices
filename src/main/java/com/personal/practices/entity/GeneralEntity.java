@@ -1,5 +1,5 @@
 package com.personal.practices.entity;
 
-public interface GeneralEntity {
-    int getMachineId();
+public interface GeneralEntity<T> {
+    T getMachineId();
 }

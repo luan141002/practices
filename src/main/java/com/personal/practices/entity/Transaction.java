@@ -10,24 +10,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 @Data
 @Entity
 @Table(name = "transaction")
-public class Transaction implements GeneralEntity {
+public class Transaction implements GeneralEntity<Integer> {
     @Id
     @Column
-    @GenericGenerator(name = AuthPersistentConst.SNOWFLAKE_ID_GENERATOR,
-            type = SnowflakeIdGenerator.class,
-            parameters = {
-                    @Parameter(name = "machineIdField", value = "testMachineId")
-            }
-    )
-    @GeneratedValue(
-            generator = AuthPersistentConst.SNOWFLAKE_ID_GENERATOR,
-            strategy = GenerationType.SEQUENCE
-    )
+    @GenericGenerator(name = AuthPersistentConst.SNOWFLAKE_ID_GENERATOR, type = SnowflakeIdGenerator.class)
+    @GeneratedValue(generator = AuthPersistentConst.SNOWFLAKE_ID_GENERATOR, strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column
@@ -37,7 +28,7 @@ public class Transaction implements GeneralEntity {
     private int testMachineId;
 
     @Override
-    public int getMachineId() {
+    public Integer getMachineId() {
         return machineId;
     }
 }
